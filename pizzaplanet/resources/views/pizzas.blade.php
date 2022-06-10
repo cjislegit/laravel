@@ -45,6 +45,7 @@ echo($name);
         <div class="title m-b-md">
             Pizza List
         </div>
+        <div>{{$name}}</div>
         @foreach($pizzas as $pizza)
         <div>
             {{-- first is a var thast comes with foreach and has info about the loop --}}
