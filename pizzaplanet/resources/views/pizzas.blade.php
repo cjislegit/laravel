@@ -26,20 +26,41 @@ echo($name);
 <?php /*@for($i = 0; $i < 5; $i++) <p>the value of i is {{$i}}</p>
 @endfor */?>
 
-@foreach($pizzas as $pizza)
-<div>
-    {{-- first is a var thast comes with foreach and has info about the loop --}}
-    {{$loop->index}} {{$pizza['type']}} - {{$pizza['base']}}
+<div class="flex-center position-ref full-height">
+    @if (Route::has('login'))
+    <div class="top-right links">
+        @auth
+        <a href="{{ url('/home') }}">Home</a>
+        @else
+        <a href="{{ route('login') }}">Login</a>
 
-    {{-- Returns true if item is first in the loop --}}
-    @if($loop->first)
-    <span>- First in the loop</span>
+        @if (Route::has('register'))
+        <a href="{{ route('register') }}">Register</a>
+        @endif
+        @endauth
+    </div>
     @endif
 
-    {{-- Returns true if item is last in the loop --}}
-    @if($loop->last)
-    <span>- Last in the loop</span>
-    @endif
+    <div class="content">
+        <div class="title m-b-md">
+            Pizza List
+        </div>
+        @foreach($pizzas as $pizza)
+        <div>
+            {{-- first is a var thast comes with foreach and has info about the loop --}}
+            {{$loop->index}} {{$pizza['type']}} - {{$pizza['base']}}
+
+            {{-- Returns true if item is first in the loop --}}
+            @if($loop->first)
+            <span>- First in the loop</span>
+            @endif
+
+            {{-- Returns true if item is last in the loop --}}
+            @if($loop->last)
+            <span>- Last in the loop</span>
+            @endif
+        </div>
+        @endforeach
+    </div>
 </div>
-@endforeach
 @endsection
