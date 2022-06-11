@@ -48,18 +48,7 @@ echo($name);
         <div>{{$name}}</div>
         @foreach($pizzas as $pizza)
         <div>
-            {{-- first is a var thast comes with foreach and has info about the loop --}}
-            {{$loop->index}} {{$pizza['type']}} - {{$pizza['base']}}
-
-            {{-- Returns true if item is first in the loop --}}
-            @if($loop->first)
-            <span>- First in the loop</span>
-            @endif
-
-            {{-- Returns true if item is last in the loop --}}
-            @if($loop->last)
-            <span>- Last in the loop</span>
-            @endif
+    {{ $pizza->name}} - {{$pizza->type}} - {{$pizza->base}}
         </div>
         @endforeach
     </div>

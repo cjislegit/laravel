@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pizza;
 
 class PizzaController extends Controller
 {
@@ -14,11 +15,7 @@ class PizzaController extends Controller
             'price' => 6,
         ];
 
-        $pizzas = [
-            ['type' => 'hawaiian', 'base' => 'chssey crust'],
-            ['type' => 'volcano', 'base' => 'garlic crust'],
-            ['type' => 'veg supreme', 'base' => 'thin & crispy'],
-        ];
+        $pizzas = Pizza::All();
 
         return view('pizzas', [
             'pizzas' => $pizzas,
