@@ -36,7 +36,9 @@ class PizzaController extends Controller
 
     public function show($id)
     {
-        return view('pizzas.show', ['id' => $id]);
+        //Finds record with the id entered and stores it is pizza var, if record does not exist a 404 page is served
+        $pizza = Pizza::findOrFail($id);
+        return view('pizzas.show', ['pizza' => $pizza]);
 
     }
 
