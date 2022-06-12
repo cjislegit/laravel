@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pizza;
+use Illuminate\Http\Request;
 
 class PizzaController extends Controller
 {
@@ -15,16 +15,16 @@ class PizzaController extends Controller
             'price' => 6,
         ];
 
-    //   Querries the DB for all records
+        //   Querries the DB for all records
         //$pizzas = Pizza::All();
-    
-    //Querries the DB for all records and orders them by name
+
+        //Querries the DB for all records and orders them by name
         //$pizzas = Pizza::orderBy('name', 'desc')->get();
 
-    //Querries records that have type of hawaiian
+        //Querries records that have type of hawaiian
         //$pizzas = Pizza::where('type', 'hawaiian')->get();
-    
-    //Querries for all records and retrieves them by date order
+
+        //Querries for all records and retrieves them by date order
         $pizzas = Pizza::latest()->get();
 
         return view('pizzas.index', [
@@ -42,7 +42,24 @@ class PizzaController extends Controller
 
     }
 
-    public function create() {
+    public function create()
+    {
         return view('pizzas.create');
+    }
+
+    public function store()
+    {
+        //Creates a new instance of the Pizza table
+        $pizza = new Pizza();
+        //Addss the new info to the new instance of the pizza table
+        $pizza->name = request('name');
+        $pizza->type = request('type');
+        $pizza->base = request('base');
+
+        //Save the new instance to the db
+        $pizza->save();
+
+        //Redirects and sends some data to the welcome page
+        return redirect('/')->with('mssg', 'Thanks for your order');
     }
 }
