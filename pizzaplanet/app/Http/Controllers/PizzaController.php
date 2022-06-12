@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PizzaController extends Controller
 {
+    //Protects all routes
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function index()
     {
         $pizza = [
